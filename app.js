@@ -1,5 +1,4 @@
 // global variables
-
 let signupbtn = document.querySelector("#signupbtn");
 let signup_modal = document.querySelector("#signup_modal");
 let signup_modalbg = document.querySelector("#signup_modalbg");
