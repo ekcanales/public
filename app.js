@@ -213,9 +213,36 @@ document.addEventListener("DOMContentLoaded", function () {
     if (user) {
       configure_nav_bar(auth.currentUser.email);
       show_reviews(auth.currentUser.email);
+
+      // Check admin status
+      db.collection("users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const userData = doc.data();
+            if (userData.admin_status) {
+              document
+                .querySelectorAll(".admin")
+                .forEach((el) => el.classList.remove("is-hidden"));
+            } else {
+              document
+                .querySelectorAll(".admin")
+                .forEach((el) => el.classList.add("is-hidden"));
+            }
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching admin status:", error);
+        });
     } else {
       configure_nav_bar();
       show_reviews();
+
+      // Always hide admin link if no user
+      document
+        .querySelectorAll(".admin")
+        .forEach((el) => el.classList.add("is-hidden"));
     }
   });
 });
