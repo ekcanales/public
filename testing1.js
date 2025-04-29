@@ -34,7 +34,7 @@ async function go() {
     "body > section > div > div > div:nth-child(1) > div > div.has-text-centered.mt-4 > button"
   );
   await page.type(
-    "#addClassModal > div.modal-content.box > form > div:nth-child(1) > div",
+    "#addClassModal > div.modal-content.box > form > div:nth-child(1) > div > input",
     "Test Class"
   );
   await page.type(
